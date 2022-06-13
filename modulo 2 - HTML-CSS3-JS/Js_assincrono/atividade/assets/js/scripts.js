@@ -1,21 +1,22 @@
-const BASE_URL = 'https://thatcopy.pw/catapi/rest/';
+const ul = document.querySelector('#list')
+const URLDATA_USERS = 'https://jsonplaceholder.typicode.com/users'
 
-const getCats = async () => {
-	try {
-		const data = await fetch(BASE_URL);
-		const json = await data.json();
-		return json.webpurl;
-	} catch (e) {
-		console.log(e.message);
-	}
-};
+const a = () => {
+	fetch(URLDATA_USERS)
+	.then((resp) => resp.json())
+	.then((data) => {
+		console.log(data)
+		return data.map((user) => {
+			let li = document.createElement('li');
+			li.innerHTML = `${user.name} (${user.email})`
+			ul.appendChild(li)
+		})
+		
+	}) 
+	.catch((error) => {
+		console.log('ops!' + error)
+	}) }
 
-const loadImg = async () => {
-	const img = document.getElementsByTagName('img')[0];
-	img.src = await getCats();
-};
 
-loadImg();
 
-const btn = document.getElementById('change-cat');
-btn.addEventListener('click', loadImg);
+	
