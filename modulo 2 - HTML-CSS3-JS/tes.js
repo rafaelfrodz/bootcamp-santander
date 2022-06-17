@@ -1,7 +1,15 @@
-let animals = ["eagle", "osprey", "salmon" ];
+var paises = [{lancamento: true, id: 121}, {lancamento: false, id: 212}]
 
-let key = animal => animal === "salmon";
+function alterarStatus (array, id, newStates){
 
-if(animals.filter(key)){
-  console.log("swim");
+  for (let index = 0; index < array.length; index++) {
+    if (array[index].id === id) {
+      array[index].lancamento = newStates
+    }
+  }
+
+  return array
 }
+
+alterarStatus(paises, 121, false)
+console.log(paises)
