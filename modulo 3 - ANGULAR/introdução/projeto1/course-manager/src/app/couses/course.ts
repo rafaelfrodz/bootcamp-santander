@@ -3,8 +3,9 @@ export class Course {
   name?: string;
   imageUrl?: string;
   price?: number;
-  code?: string;
+  code!: string;
   duration?: number;
   rating?: number;
-  releaseDate?: string
+  releaseDate?: string;
+  description?: string;
 }
