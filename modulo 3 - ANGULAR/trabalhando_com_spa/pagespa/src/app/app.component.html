@@ -1,0 +1,40 @@
+<h1 class="text-success text-center">teste</h1>
+
+<!-- ⁡⁣⁢⁣DIRETIVAS DE ATRIBUTOS⁡ ⁡-->
+
+<h2 class="text-center" 
+[ngStyle]="{background: contador < 5 ? 'red' : 'green' }" 
+[ngClass]="{custom: contador > 5}">
+Contador: {{contador}}</h2>
+
+
+<!-- ⁡⁣⁢⁣DIRETIVAS ESTRUTURAIS⁡ -->⁡
+
+<h2 *ngIf="contador > 5 && contador < 10; else menor" class="text-center">O contador passou de 7</h2>
+
+<ng-template #menor>
+  <h2 class="text-center">O contador é menor do que 7</h2>
+</ng-template>
+
+<ul [ngSwitch]="contador" class="list-group text-center mx-auto col-1">
+  <li class="list-group-item" *ngSwitchCase="1">1</li>
+  <li class="list-group-item" *ngSwitchCase="2">2</li>
+  <li class="list-group-item" *ngSwitchCase="3">3</li>
+  <li class="list-group-item" *ngSwitchCase="4">4</li>
+  <li class="list-group-item" *ngSwitchCase="5">5</li>
+  <li class="list-group-item" *ngSwitchDefault="">Finalizado</li>
+</ul>
+
+<ul class="list-group mx-auto col-4 text-center">
+  <li *ngFor="let pessoa of pessoas" class="list-group-item">Primeiro nome: {{pessoa.nome}} Segundo nome: {{pessoa.sobrenome}} </li>
+</ul>
+
+<h3 spaMarcaTexto corDeFundo="blue" corDoTexto="green"> {{nome}} </h3>
+<button class="btn btn-success" (click)="clicou('Ivangay')">Clique</button>
+
+<div class="col-4 mx-auto">
+  <input [(ngModel)]="text" type="text" class="form-control" placeholder="Digite alguma coisa">
+  <h4>Saida: {{text}}</h4>
+</div>
+
+
