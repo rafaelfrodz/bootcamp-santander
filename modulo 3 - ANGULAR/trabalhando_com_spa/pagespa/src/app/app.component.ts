@@ -12,21 +12,6 @@ export class AppComponent implements OnInit {
 
   text: string = ''
 
-  pessoas = [
-    {
-      nome: 'Ivagay',
-      sobrenome: 'Matos'
-    },
-    {
-      nome: 'Divan',
-      sobrenome: 'Souza'
-    },
-    {
-      nome: 'Lucas',
-      sobrenome: 'Silva'
-    }
-  ]
-
   constructor() { }
 
   ngOnInit(): void {

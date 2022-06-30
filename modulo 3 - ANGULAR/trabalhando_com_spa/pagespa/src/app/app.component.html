@@ -25,16 +25,24 @@ Contador: {{contador}}</h2>
   <li class="list-group-item" *ngSwitchDefault="">Finalizado</li>
 </ul>
 
-<ul class="list-group mx-auto col-4 text-center">
-  <li *ngFor="let pessoa of pessoas" class="list-group-item">Primeiro nome: {{pessoa.nome}} Segundo nome: {{pessoa.sobrenome}} </li>
-</ul>
+<spa-list-people></spa-list-people>
 
-<h3 spaMarcaTexto corDeFundo="blue" corDoTexto="green"> {{nome}} </h3>
-<button class="btn btn-success" (click)="clicou('Ivangay')">Clique</button>
+<div class="col-4 mx-auto my-3 container" >
+  <h3 spaMarcaTexto corDeFundo="blue" corDoTexto="green" class="text-center"> {{nome}} </h3>
+  <button class="btn btn-success mx-auto col-4" (click)="clicou('Ivangay')">Clique</button>
+</div>
 
 <div class="col-4 mx-auto">
   <input [(ngModel)]="text" type="text" class="form-control" placeholder="Digite alguma coisa">
   <h4>Saida: {{text}}</h4>
 </div>
 
-
+<!-- ⁡⁣⁣⁢CONSUMINDO API⁡ -->
+<div class="container my-5">
+  <div class="row d-flex align-items-center justify-content-center">
+    <h2 class="text-center">LISTAGEM DE PERSONAGENS RICK AND MOR</h2>
+    <div class="col-12">
+      <spa-list-api></spa-list-api>
+    </div>
+  </div>
+</div>
