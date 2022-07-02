@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -8,8 +11,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class UserFormComponent implements OnInit {
   userForm: FormGroup
+  users: Array<User> = []
+  userId: any = ''
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userServices: UserService, private actRoute: ActivatedRoute, private router: Router) {
+
     this.userForm = this.fb.group({
       id: 0,
       nome: '',
@@ -20,9 +26,50 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe(params => {
+      this.userId = params.get('id')
+      console.log(this.userId)
+      if (this.userId !== null) {
+        this.userServices.getUser(this.userId).subscribe(result => {
+          this.userForm.patchValue({
+            id: result[0].id,
+            nome: result[0].nome,
+            sobrenome: result[0].sobrenome,
+            idade: result[0].idade,
+            profissao: result[0].profissao
+          })
+        })
+      }
+    })
+    this.getUsers()
+  }
+
+  getUsers(): void {
+    this.userServices.getUsers().subscribe(response => this.users = response)
   }
 
   createUser() {
-    console.log(this.userForm)
+    this.userForm.get("id")?.patchValue(this.users.length + 1)
+    this.userServices.postUser(this.userForm.value).subscribe(result => {
+      console.log(`Usuario ${result.nome} foi cadastrado com sucesso!`)
+    }, (err) => { }, () => {
+      this.router.navigate(['/'])
+    })
+  }
+
+  updateUser() {
+    this.userServices.updateUser(this.userId, this.userForm.value).subscribe(result => {
+      console.log(`Usuario atualziado!`, result)
+    }, (err) => { }, () => {
+      this.router.navigate(['/'])
+    })
+  }
+
+  actionButton() {
+    if (this.userId !== null) {
+      this.updateUser()
+    } else {
+      this.createUser()
+    }
   }
 }
