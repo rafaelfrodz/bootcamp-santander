@@ -59,7 +59,7 @@ export class UserFormComponent implements OnInit {
 
   updateUser() {
     this.userServices.updateUser(this.userId, this.userForm.value).subscribe(result => {
-      console.log(`Usuario atualziado!`, result)
+      console.log(`Usuario atualizado!`, result)
     }, (err) => { }, () => {
       this.router.navigate(['/'])
     })
