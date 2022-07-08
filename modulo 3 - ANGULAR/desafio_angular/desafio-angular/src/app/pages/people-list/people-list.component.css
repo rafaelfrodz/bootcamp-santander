@@ -1,0 +1,9 @@
+.emailP {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.emailP p {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label for="number">Number</label>
+  <input type="text" [(ngModel)]="number" id="number" class="form-control">
+</div>
+
+<div>
+  <p>sem formatação:</p>
+  <p>{{ number | number}}</p>
+
+  <p>com formatação:</p>
+  <p>{{ number | number: '2.0-1':'pt-BR'}}</p>
+
+
+  <p>em moeda</p>
+  <p>{{ number | currency: 'BRL'}}</p>
+
+
+  <p>{{ text | lowercase}}</p>
+</div>
